@@ -6,7 +6,7 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import theme from 'src/theme';
-import { Pos, Admin } from 'src/components/Layout';
+import { Pos, Admin, AdminP } from 'src/components/Layout';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -15,11 +15,15 @@ function MyApp({ Component, pageProps }: AppProps) {
     const { children, title } = props;
     const path = router.pathname.split('/');
 
-    if (path[1] === 'admin') {
+    if (path[2] === 'login') {
       return <Admin>{children}</Admin>;
-    } else {
-      return <Pos title={title}>{children}</Pos>;
     }
+
+    if (path[1] === 'admin') {
+      return <AdminP>{children}</AdminP>;
+    }
+
+    return <Pos title={title}>{children}</Pos>;
   };
 
   console.log(pageProps, 'console');
